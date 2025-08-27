@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated HELLO</title>
+<style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            font-size: 8em;
+            font-weight: 900;
+            font-family: Arial, sans-serif;
+        }
+
+        .container span {
+            display: inline-block;
+            color: transparent;
+            animation: colorChange 4s infinite;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        @keyframes colorChange {
+            0%, 100% {
+                color: #ff0000;
+                filter: hue-rotate(0deg);
+            }
+            25% {
+                color: #00ff00;
+            }
+            50% {
+                color: #0000ff;
+            }
+            75% {
+                color: #ff00ff;
+            }
+        }
+
+        .container span:nth-child(1) { animation-delay: 0.1s; }
+        .container span:nth-child(2) { animation-delay: 0.2s; }
+        .container span:nth-child(3) { animation-delay: 0.3s; }
+        .container span:nth-child(4) { animation-delay: 0.4s; }
+        .container span:nth-child(5) { animation-delay: 0.5s; }
+
+        .container span {
+            animation: 
+                rotate 2s ease-in-out infinite,
+                scale 1.5s ease-in-out infinite,
+                glow 2s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+        }
+
+        @keyframes scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+            50% { text-shadow: 0 0 20px rgba(255,255,255,1), 0 0 30px rgba(255,0,255,0.5); }
+        }
+
+        /* Effect for hover */
+        .container span:hover {
+            transform: scale(1.5) rotate(360deg);
+            transition: all 0.3s ease;
+        }
+</style>
+  </head>
+  <body>
+    <div class="container">
+	  <span>H</span>
+	  <span>E</span>
+	  <span>L</span>
+	  <span>L</span>
+	  <span>O</span>
+    </div>
+
+<script>
+        // Add random rotation on click
+        document.querySelectorAll('.container span').forEach(letter => {
+            letter.addEventListener('click', () => {
+                letter.style.transform = `rotate(${Math.random() * 360}deg) scale(1.5)`;
+                letter.style.color = `hsl(${Math.random() * 360}deg, 100%, 50%)`;
+            });
+        });
+
+        // Add dynamic animation delays
+        const letters = document.querySelectorAll('.container span');
+        letters.forEach((letter, index) => {
+            letter.style.animationDelay = `${index * 0.1}s`;
+        });
+</script>
+  </body>
+</html>
